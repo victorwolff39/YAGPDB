@@ -1,0 +1,1 @@
+{{print (toInt (dbGet .User.ID "mudaecStrikes").Value)}}
