@@ -10,14 +10,14 @@
     Made by: Victor Wolff#147
 */}}
 
-{{/*---- Configuration ----*/}}
+{{/*---- Configuration ---- */}}
 {{$timer := 120}}
 {{$triggerChance := 8}}
-{{$successLog := 826972560863264809}}
-{{$failedLog := 826972560863264809}}
-{{$startedLog := 826972560863264809}}
+{{$successLog := 821018660976984084}}
+{{$failedLog := 821018660976984084}}
+{{$startedLog := 821018660976984084}}
 
-{{/* Iniciating variables */}}
+{{/* Initiating variables */}}
 {{$trigger := randInt $triggerChance}}
 {{$attemptCount := 0}}
 {{$securityCode := 0}}
@@ -34,15 +34,15 @@
 
 {{/* If command was NOT executed by scheculeUniqueCC (triggered by a user) */}}
 {{if not .ExecData}}
-
 	{{/* Execute the command randomly - First time the command is executed */}}
 	{{if or (and (eq $trigger 0) (not $isWaitingResponse)) (and (eq .User.ID 121709907681476610) (eq .Message.Content "--trigger"))}}
+		{{/* Generates the 4-pin code */}}
 		{{$generatedCode := randInt 1000 10000}}
 
 		{{/* Create the embed with the generated security code, sends it and return the message ID */}}
 		{{$embed := cembed
 			"image" (sdict "url" "https://i.imgur.com/U8UpPNI.jpg")
-			"description" (print "Co-com licença senpai... \n\nSou a FBI-chan... Preciso que você me diga se está jogando mesmo... \n Tem gente que usa bot... Isso me deixa triste. \n\n Digite o código no chat pra provar que você não é um robô. \n\n**Código:** ||" $generatedCode "|| \n\nBom jogo!")
+			"description" (print "Co-com licença senpai... \n\nSou a FBI-chan... Preciso que você me diga se está jogando mesmo... \n Tem gente que usa bot... Isso me deixa triste. \n\n Digite o código no chat pra provar que você não é um robô. \n\n**Código:** ||" $generatedCode "||")
 			"color" 3375061
 			"footer" (sdict "text" (joinStr " " "Enviado para:" .Member.User.ID)) 
 			"timestamp" currentTime
